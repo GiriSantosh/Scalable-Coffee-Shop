@@ -1,0 +1,65 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "http://repo.spring.io/milestone/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.8'
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+version = '1.0'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://repo.spring.io/milestone/"
+    }
+    jcenter()
+}
+
+dependencies {
+	compile 'mysql:mysql-connector-java:5.1.36'
+	compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-hateoas:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-activemq:$springBootVersion"
+    compile "org.springframework.kafka:spring-kafka:$springBootVersion"
+    
+    compile group: 'net.rakugakibox.spring.boot', name: 'orika-spring-boot-starter', version: '1.5.0'
+    
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testCompile "org.springframework.kafka:spring-kafka-test:$springBootVersion"
+    testCompile "junit:junit:4.11"
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
