@@ -2,9 +2,9 @@ package net.santosh.event.source.backend.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +47,6 @@ public abstract class BaseModel implements Serializable {
 	 *            extends BaseDTO
 	 * @param mapper
 	 * @return
-	 * @throws BaseConversionException
 	 */
 	public <S> S toDTO(Class<S> clazz, MapperFacade mapper) throws Exception {
 

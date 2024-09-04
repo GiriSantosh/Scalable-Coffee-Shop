@@ -1,0 +1,25 @@
+version: '3.8'  # Specify the Compose file format version
+services:
+  mysql:
+    image: mysql:latest  # Use the latest MySQL image from Docker Hub
+    container_name: mysql-onboarding  # Name the container
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: eventuate
+      MYSQL_USER: eventuate
+      MYSQL_PASSWORD: admin@123*
+    ports:
+      - "3306:3306"  # Map MySQL port to host
+    volumes:
+      - mysql-data:/home/santoshgiri/Documents/projects/BeanEvnt/eventuate  # Persist MySQL data
+
+  beanservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+
+volumes:
+  mysql-data: # Define a named volume for MySQL data

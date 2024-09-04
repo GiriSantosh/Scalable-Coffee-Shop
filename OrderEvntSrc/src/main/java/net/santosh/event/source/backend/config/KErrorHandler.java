@@ -15,7 +15,7 @@ public class KErrorHandler implements KafkaListenerErrorHandler{
 	private static final Logger LOGGER = LoggerFactory.getLogger(KErrorHandler.class);
 	
 	@Override
-	public Object handleError(Message<?> message, ListenerExecutionFailedException e) throws Exception {
+	public Object handleError(Message<?> message, ListenerExecutionFailedException e) {
 		LOGGER.info("Handling error for -Message: {}, -Headers [{}], -exception: {}",message.getPayload(), message.getHeaders(), e.getMessage());
 		return null;
 	}

@@ -1,65 +1,54 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "http://repo.spring.io/milestone/"
-        }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    }
+plugins {
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+    id 'org.owasp.dependencycheck' version '8.2.1'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.8'
-}
-
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 version = '1.0'
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-                   'Implementation-Version': version
+        attributes(
+                'Implementation-Title': 'Gradle Bean',
+                'Implementation-Version': version
+        )
     }
 }
 
 repositories {
     mavenCentral()
     maven {
-        url "http://repo.spring.io/milestone/"
+        url = uri("https://company/com/maven2")
     }
-    jcenter()
+    mavenLocal()
+    flatDir {
+        dirs "libs"
+    }
 }
 
 dependencies {
-	compile 'mysql:mysql-connector-java:5.1.36'
-	compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-hateoas:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-activemq:$springBootVersion"
-    compile "org.springframework.kafka:spring-kafka:$springBootVersion"
-    
-    compile group: 'net.rakugakibox.spring.boot', name: 'orika-spring-boot-starter', version: '1.5.0'
-    
-    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
-    testCompile "org.springframework.kafka:spring-kafka-test:$springBootVersion"
-    testCompile "junit:junit:4.11"
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-hateoas"
+    implementation "org.springframework.boot:spring-boot-starter-activemq"
+    implementation "org.springframework.kafka:spring-kafka"
+
+    implementation 'ma.glasnost.orika:orika-core:1.5.4'
+    implementation 'net.rakugakibox.spring.boot:orika-spring-boot-starter:1.5.0'
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.springframework.kafka:spring-kafka-test"
+    testImplementation 'junit:junit:4.13.2'
 }
 
-test {
-    systemProperties 'property': 'value'
-}
-
-uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
+tasks.withType(Test) {
+    reports {
+        html.required.set(true)
+        html.outputLocation.set(file("${reporting.baseDir}/${name}"))
     }
 }

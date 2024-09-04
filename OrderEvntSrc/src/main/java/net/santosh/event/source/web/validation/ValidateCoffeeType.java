@@ -2,8 +2,8 @@ package net.santosh.event.source.web.validation;
 
 import java.util.Objects;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import net.santosh.event.source.backend.entity.CoffeeType;
 
