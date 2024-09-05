@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest  # Use the latest MySQL image from Docker Hub
+    container_name: coffee-bean-mysql
+    env_file:
+      - .env  # Ensure this file contains the necessary MySQL environment variables
+    ports:
+      - "33061:3306"  # Map MySQL port to host
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - mysql-data:/var/lib/mysql  # Use the correct path for MySQL data persistence
+
+  beanservice:
+    build:
+      context: ./BeanEvntSrc
+      dockerfile: Dockerfile
+      args:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/eventuate?useSSL=false&serverTimezone=UTC
+        SPRING_DATASOURCE_USERNAME: eventuate
+        SPRING_DATASOURCE_PASSWORD: admin@123*
+        JAVA_OPTS: -Xmx256m --add-opens java.base/java.lang=ALL-UNNAMED
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  orderservice:
+    build:
+      context: ./OrderEvntSrc
+      dockerfile: Dockerfile
+      args:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/eventuate?useSSL=false&serverTimezone=UTC
+        SPRING_DATASOURCE_USERNAME: eventuate
+        SPRING_DATASOURCE_PASSWORD: admin@123*
+        JAVA_OPTS: -Xmx256m --add-opens java.base/java.lang=ALL-UNNAMED
+    ports:
+      - "8081:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+networks:
+  spring-boot-network:
+    driver: bridge
+
+volumes:
+  mysql-data:  # Define a named volume for MySQL data

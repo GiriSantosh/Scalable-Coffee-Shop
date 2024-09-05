@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beanservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beanservice
+  template:
+    metadata:
+      labels:
+        app: beanservice
+    spec:
+      containers:
+        - name: beanservice
+          image: scalable-coffee-shop-beanservice:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://coffee-bean-mysql:3306/eventuate?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+            - name: SPRING_DATASOURCE_USERNAME
+              value: eventuate
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-env
+                  key: MYSQL_PASSWORD # Adjust according to your .env file
+            - name: JAVA_OPTS
+              valueFrom:
+                configMapKeyRef:
+                  name: java-config
+                  key: JAVA_OPTS

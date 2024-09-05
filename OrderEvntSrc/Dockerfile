@@ -1,6 +1,18 @@
 # Use Eclipse Temurin as the base image with Java 17
 FROM eclipse-temurin:17
 
+# Define build arguments
+ARG SPRING_DATASOURCE_URL
+ARG SPRING_DATASOURCE_USERNAME
+ARG SPRING_DATASOURCE_PASSWORD
+ARG JAVA_OPTS
+
+# Set environment variables
+ENV SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+ENV SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+ENV SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+ENV JAVA_OPTS=${JAVA_OPTS}
+
 # Set the working directory inside the container
 WORKDIR /app
 
@@ -8,7 +20,7 @@ WORKDIR /app
 COPY ./build/libs/*.jar orderservice.jar
 
 # Expose the port your application runs on
-EXPOSE 8090
+EXPOSE 8081
 
 # Run the JAR file
-ENTRYPOINT ["java", "-jar", "orderservice.jar"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar orderservice.jar"]

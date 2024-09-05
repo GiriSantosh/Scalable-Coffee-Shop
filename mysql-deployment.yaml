@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-bean-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee-bean-mysql
+  template:
+    metadata:
+      labels:
+        app: coffee-bean-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          command: ["mysqld"]
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - secretRef:
+                name: mysql-env
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-data-pvc

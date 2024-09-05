@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  MYSQL_DATABASE: eventuate
+  MYSQL_PASSWORD: admin@123*
+  MYSQL_ROOT_PASSWORD: root_password
+  MYSQL_USER: eventuate
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/eventuate?useSSL=false&serverTimezone=UTC
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: mysql-env
+  name: env
