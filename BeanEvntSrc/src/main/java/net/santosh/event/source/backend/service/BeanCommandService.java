@@ -12,6 +12,9 @@ public class BeanCommandService {
 	private BeanService bean;
 
 	public void storeBean(Bean storeBean) {
+		if (storeBean.getName().isEmpty()){
+			throw new RuntimeException("Empty Bean name or amount is not acceptable");
+		}
 		bean.storeBean(storeBean);
 	}
 
