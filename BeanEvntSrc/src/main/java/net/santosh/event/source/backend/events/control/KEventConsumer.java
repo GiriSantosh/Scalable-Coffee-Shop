@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,8 @@ import net.santosh.event.source.backend.events.entity.OrderAccepted;
 import net.santosh.event.source.backend.events.entity.OrderPlaced;
 
 @Component
+@Profile("!default")
+
 public class KEventConsumer {
 	
 	@Value("${app.env}")

@@ -16,6 +16,7 @@ import net.santosh.event.source.backend.events.entity.OrderBeansValidated;
 import net.santosh.event.source.backend.events.entity.OrderFailedBeanNotAvailable;
 
 @Configuration
+@Profile("!default")
 public class KTopicConfiguration {
 
 	@Value("${spring.kafka.bootstrap-servers}")

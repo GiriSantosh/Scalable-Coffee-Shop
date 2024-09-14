@@ -12,10 +12,11 @@ spec:
       labels:
         app: coffee-bean-mysql
     spec:
+      securityContext:
+        fsGroup: 999
       containers:
         - name: mysql
           image: mysql:latest
-          command: ["mysqld"]
           ports:
             - containerPort: 3306
           envFrom:
