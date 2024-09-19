@@ -1,24 +1,25 @@
 package net.santosh.event.source.backend.events.control;
 
-import java.util.Objects;
-
+import net.santosh.event.source.backend.events.entity.OrderAcceptConfirmed;
+import net.santosh.event.source.backend.events.entity.OrderBeansValidated;
+import net.santosh.event.source.backend.events.entity.OrderFailedBeanNotAvailable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import net.santosh.event.source.backend.events.entity.OrderAcceptConfirmed;
-import net.santosh.event.source.backend.events.entity.OrderBeansValidated;
-import net.santosh.event.source.backend.events.entity.OrderFailedBeanNotAvailable;
+import java.util.Objects;
 
 /**
  * @author santosh
  *
  */
 @Component
+@Profile("!default")
 public class KEventConsumer {
 
 	private static final Logger		  LOGGER = LoggerFactory.getLogger(KEventConsumer.class);

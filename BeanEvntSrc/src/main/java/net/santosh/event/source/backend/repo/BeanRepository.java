@@ -1,10 +1,9 @@
 package net.santosh.event.source.backend.repo;
 
+import net.santosh.event.source.backend.entity.Bean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-
-import net.santosh.event.source.backend.entity.Bean;
 
 /**
  * @author santosh

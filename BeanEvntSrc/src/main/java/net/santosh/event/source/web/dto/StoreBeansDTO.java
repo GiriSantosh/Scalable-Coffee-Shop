@@ -20,7 +20,7 @@ public class StoreBeansDTO extends BaseDTO {
 	private String			  beanOrigin;
 
 	/** number of stock */
-	private Integer			  amount;
+	private Integer qty;
 
 	public String getBeanOrigin() {
 		return beanOrigin;
@@ -30,12 +30,11 @@ public class StoreBeansDTO extends BaseDTO {
 		this.beanOrigin = beanOrigin;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public Integer getQty() {
+		return qty;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setQty(Integer qty) {
+		this.qty = qty;
 	}
-
 }

@@ -1,16 +1,15 @@
 package net.santosh.event.source.backend.events;
 
-import java.util.Date;
-import java.util.Objects;
-import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import net.santosh.event.source.backend.common.FieldConstant;
 import net.santosh.event.source.backend.entity.EntityType;
 import net.santosh.event.source.backend.entity.EventStore;
+
+import java.util.Date;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author santosh

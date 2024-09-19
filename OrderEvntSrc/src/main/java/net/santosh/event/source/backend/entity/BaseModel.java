@@ -1,15 +1,13 @@
 package net.santosh.event.source.backend.entity;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-
+import ma.glasnost.orika.MapperFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ma.glasnost.orika.MapperFacade;
+import java.io.Serializable;
 
 /**
  * Super class for all DB models

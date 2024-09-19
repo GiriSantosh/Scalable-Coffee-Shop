@@ -1,16 +1,15 @@
 package net.santosh.event.source.backend.events;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
-
 import net.santosh.event.source.backend.events.entity.OrderAcceptConfirmed;
 import net.santosh.event.source.backend.events.entity.OrderBeansValidated;
 import net.santosh.event.source.backend.events.entity.OrderFailedBeanNotAvailable;
 import net.santosh.event.source.backend.service.EventService;
 import net.santosh.event.source.backend.service.OrderCommandService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
 /**
  * handles all the events that are being consumed from the queue.

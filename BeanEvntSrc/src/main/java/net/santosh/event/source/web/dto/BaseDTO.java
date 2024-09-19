@@ -1,36 +1,25 @@
 package net.santosh.event.source.web.dto;
 
+import org.modelmapper.ModelMapper;
+
 import java.io.Serializable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import ma.glasnost.orika.MapperFacade;
 
 /**
  * @author santosh
- *
  */
 public abstract class BaseDTO implements Serializable {
 
-	private static final long serialVersionUID = -151021596907692528L;
-	private static final Logger	LOGGER			 = LoggerFactory.getLogger(BaseDTO.class);
+    private static final long serialVersionUID = -151021596907692528L;
 
-	/**
-	 * converts to Model entity object
-	 * 
-	 * @note beanUtils look for exact name during model conversion
-	 * @param clazz
-	 * @return
-	 * @throws DTOConversionException
-	 */
-	public <T> T toModel(Class<T> clazz, MapperFacade mapper) throws Exception {
-		try {
-			return mapper.map(this, clazz);
-		} catch (Exception e) {
-			LOGGER.error(null, e);
-			throw new Exception(
-				String.format("Error converting to class %s, message %s", clazz.getTypeName(), e.getLocalizedMessage()));
-		}
-	}
+    /**
+     * converts to Model entity object
+     *
+     * @param clazz
+     * @return
+     * @note beanUtils look for exact name during model conversion
+     */
+    public <T> T toModel(Class<T> clazz, ModelMapper mapper) {
+        return mapper.map(this, clazz);
+    }
 }

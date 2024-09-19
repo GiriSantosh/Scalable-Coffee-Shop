@@ -1,20 +1,19 @@
 package net.santosh.event.source.backend.events.listener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
-
 import net.santosh.event.source.backend.events.control.KEventProducer;
 import net.santosh.event.source.backend.events.entity.OrderAccepted;
 import net.santosh.event.source.backend.events.entity.OrderCancelled;
 import net.santosh.event.source.backend.events.entity.OrderPlaced;
 import net.santosh.event.source.backend.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ApplicationEventListener {
 
-	@Autowired
+	@Autowired(required = false)
 	private KEventProducer eventProducer;
 
 	@Autowired

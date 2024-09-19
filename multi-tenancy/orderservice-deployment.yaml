@@ -1,0 +1,41 @@
+# orderservice-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: orderservice
+  template:
+    metadata:
+      labels:
+        app: orderservice
+    spec:
+      containers:
+        - name: orderservice
+          image: scalable-coffee-shop-orderservice:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: tenant-config-a
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: tenant-config-a
+                  key: SPRING_DATASOURCE_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tenant-secret-a
+                  key: SPRING_DATASOURCE_PASSWORD
+            - name: JAVA_OPTS
+              valueFrom:
+                configMapKeyRef:
+                  name: java-config
+                  key: JAVA_OPTS

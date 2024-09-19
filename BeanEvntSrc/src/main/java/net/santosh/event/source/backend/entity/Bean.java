@@ -1,13 +1,10 @@
 package net.santosh.event.source.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.UUID;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 /**
  * @author santosh
@@ -15,6 +12,7 @@ import jakarta.persistence.TemporalType;
  */
 @Entity
 @Table(name="beans")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Bean extends BaseModel{
 
 	public Bean() {

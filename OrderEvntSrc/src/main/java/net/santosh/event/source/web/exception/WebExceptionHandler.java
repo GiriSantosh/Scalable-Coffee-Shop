@@ -1,9 +1,8 @@
 package net.santosh.event.source.web.exception;
 
+import net.santosh.event.source.backend.exception.UserException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import net.santosh.event.source.backend.exception.UserException;
 
 /**
  * @author santosh

@@ -1,7 +1,6 @@
 package net.santosh.event.source.backend.events.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import net.santosh.event.source.backend.events.CoffeeEvent;
 import net.santosh.event.source.util.ObjectMapperUtil;
 

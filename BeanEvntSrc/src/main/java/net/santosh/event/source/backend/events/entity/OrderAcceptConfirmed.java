@@ -1,12 +1,11 @@
 package net.santosh.event.source.backend.events.entity;
 
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import net.santosh.event.source.backend.events.CoffeeEvent;
 import net.santosh.event.source.util.ObjectMapperUtil;
+
+import java.util.Objects;
 
 /**
  * @author santosh

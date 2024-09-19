@@ -1,8 +1,7 @@
 package net.santosh.event.source.main;
 
-import org.springframework.boot.SpringApplication;
-
 import net.santosh.event.source.BeanServiceConfiguration;
+import org.springframework.boot.SpringApplication;
 
 /**
  * @author santosh

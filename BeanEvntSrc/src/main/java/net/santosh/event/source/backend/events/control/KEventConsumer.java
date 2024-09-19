@@ -1,7 +1,7 @@
 package net.santosh.event.source.backend.events.control;
 
-import java.util.Objects;
-
+import net.santosh.event.source.backend.events.entity.OrderAccepted;
+import net.santosh.event.source.backend.events.entity.OrderPlaced;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import net.santosh.event.source.backend.events.entity.OrderAccepted;
-import net.santosh.event.source.backend.events.entity.OrderPlaced;
+import java.util.Objects;
 
 @Component
 @Profile("!default")

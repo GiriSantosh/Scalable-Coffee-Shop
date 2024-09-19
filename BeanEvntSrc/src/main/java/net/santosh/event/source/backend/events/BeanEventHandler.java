@@ -1,14 +1,13 @@
 package net.santosh.event.source.backend.events;
 
+import net.santosh.event.source.backend.events.entity.OrderAccepted;
+import net.santosh.event.source.backend.events.entity.OrderPlaced;
+import net.santosh.event.source.backend.service.BeanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-
-import net.santosh.event.source.backend.events.entity.OrderAccepted;
-import net.santosh.event.source.backend.events.entity.OrderPlaced;
-import net.santosh.event.source.backend.service.BeanService;
 
 /**
  * handles all the events that are being consumed from the queue.

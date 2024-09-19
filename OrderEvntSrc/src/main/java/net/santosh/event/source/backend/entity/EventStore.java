@@ -1,13 +1,9 @@
 package net.santosh.event.source.backend.entity;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.UUID;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
 
 /**
  * @author santosh

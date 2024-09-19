@@ -1,0 +1,41 @@
+# tenant-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tenant-ingress
+spec:
+  rules:
+    - host: a.coffee.com
+      http:
+        paths:
+          - path: /bean
+            pathType: Prefix
+            backend:
+              service:
+                name: beanservice
+                port:
+                  number: 8080
+          - path: /order
+            pathType: Prefix
+            backend:
+              service:
+                name: orderservice
+                port:
+                  number: 8080
+    - host: b.coffee.com
+      http:
+        paths:
+          - path: /bean
+            pathType: Prefix
+            backend:
+              service:
+                name: beanservice
+                port:
+                  number: 8080
+          - path: /order
+            pathType: Prefix
+            backend:
+              service:
+                name: orderservice
+                port:
+                  number: 8080

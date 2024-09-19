@@ -1,8 +1,8 @@
 package net.santosh.event.source.backend.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import net.santosh.event.source.backend.events.entity.OrderAcceptConfirmed;
+import net.santosh.event.source.backend.events.entity.OrderBeansValidated;
+import net.santosh.event.source.backend.events.entity.OrderFailedBeanNotAvailable;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,9 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaAdmin;
 
-import net.santosh.event.source.backend.events.entity.OrderAcceptConfirmed;
-import net.santosh.event.source.backend.events.entity.OrderBeansValidated;
-import net.santosh.event.source.backend.events.entity.OrderFailedBeanNotAvailable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @Profile("!default")

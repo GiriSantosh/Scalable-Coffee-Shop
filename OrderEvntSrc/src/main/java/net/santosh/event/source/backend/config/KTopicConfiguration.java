@@ -1,20 +1,21 @@
 package net.santosh.event.source.backend.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import net.santosh.event.source.backend.events.entity.OrderAccepted;
+import net.santosh.event.source.backend.events.entity.OrderCancelled;
+import net.santosh.event.source.backend.events.entity.OrderPlaced;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaAdmin;
 
-import net.santosh.event.source.backend.events.entity.OrderAccepted;
-import net.santosh.event.source.backend.events.entity.OrderCancelled;
-import net.santosh.event.source.backend.events.entity.OrderPlaced;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
+@Profile("!default")
 public class KTopicConfiguration {
 
 	@Value("${spring.kafka.bootstrap-servers}")

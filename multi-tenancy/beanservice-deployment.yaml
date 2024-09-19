@@ -1,0 +1,41 @@
+# beanservice-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beanservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beanservice
+  template:
+    metadata:
+      labels:
+        app: beanservice
+    spec:
+      containers:
+        - name: beanservice
+          image: scalable-coffee-shop-beanservice:1.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: tenant-config-a
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: tenant-config-a
+                  key: SPRING_DATASOURCE_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tenant-secret-a
+                  key: SPRING_DATASOURCE_PASSWORD
+            - name: JAVA_OPTS
+              valueFrom:
+                configMapKeyRef:
+                  name: java-config
+                  key: JAVA_OPTS

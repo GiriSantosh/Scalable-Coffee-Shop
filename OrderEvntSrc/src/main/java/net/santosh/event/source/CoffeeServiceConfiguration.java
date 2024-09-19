@@ -1,9 +1,8 @@
 package net.santosh.event.source;
 
+import net.santosh.event.source.backend.config.OrderBackEndConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
-
-import net.santosh.event.source.backend.config.OrderBackEndConfiguration;
 
 /**
  * @author santosh

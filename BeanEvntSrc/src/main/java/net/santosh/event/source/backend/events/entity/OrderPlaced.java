@@ -2,7 +2,6 @@ package net.santosh.event.source.backend.events.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import net.santosh.event.source.backend.events.CoffeeEvent;
 import net.santosh.event.source.backend.events.dto.PlaceOrderInfoDto;
 import net.santosh.event.source.util.ObjectMapperUtil;

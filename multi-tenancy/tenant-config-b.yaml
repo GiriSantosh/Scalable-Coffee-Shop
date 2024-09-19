@@ -1,0 +1,8 @@
+# tenant-config-a.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tenant-config-b
+data:
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/eventuate_b?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+  SPRING_DATASOURCE_USERNAME: eventuate_b

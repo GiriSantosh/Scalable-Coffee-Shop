@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - image: mysql:latest
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-tenant-env
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_USER_A
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-tenant-env
+                  key: MYSQL_USER_A
+            - name: MYSQL_USER_B
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-tenant-env
+                  key: MYSQL_USER_B
+            - name: MYSQL_PASSWORD_A
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-tenant-env
+                  key: MYSQL_PASSWORD_A
+            - name: MYSQL_PASSWORD_B
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-tenant-env
+                  key: MYSQL_PASSWORD_B
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
